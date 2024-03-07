@@ -13,6 +13,7 @@
     <table border=1>
         <thead>
             <tr>
+                <th>ID</th>
                 <th>ID_usuario </th>
                 <th>Subtotal </th>
                 <th>Fecha </th>
@@ -22,6 +23,7 @@
         <body>
             @foreach ($ventas as $venta)
             <tr>
+                <td>{{ $venta->id }}</td>
                 <td>{{ $venta->id_usuario }}</td>
                 <td>{{ $venta->subtotal }}</td>
                 <td>{{ $venta->fecha }}</td>
@@ -29,7 +31,7 @@
                 <td>
                     <a href="{{ route('venta.show', $venta->id) }}"> Detalle </a>
                     <br>
-                    <a href="{{ route('venta.edit', $venta->id_usuario) }}"> Editar </a>
+                    <a href="{{ route('venta.edit', $venta->id) }}"> Editar </a>
                     <br>
                     <form action="{{ route('venta.destroy', $venta) }}" method="POST">
                         @csrf
