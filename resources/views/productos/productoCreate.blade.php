@@ -6,10 +6,10 @@
     <title>Nuevo producto</title>
 </head>
 <body>
-    <form action="{{route('productos.store')}}" method="POST">
+    <form action="{{route('producto.store')}}" method="POST">
         @csrf 
         {{--Importante en cada formulario. Es otro input que genera una llave--}}
-        <a href="{{route('productos.index')}}">Lista de Productos</a>
+        <a href="{{route('producto.index')}}">Lista de Productos</a>
         <h1>Nuevo producto</h1>
         <label for="nombre">Nombre: </label>
         <input type="text" name="nombre" value="{{old('nombre')}}">

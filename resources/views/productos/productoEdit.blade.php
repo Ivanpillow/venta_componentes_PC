@@ -6,18 +6,18 @@
     <title>Editar producto</title>
 </head>
 <body>
-    <form action="{{route('productos.update', $producto)}}" method="POST">
+    <form action="{{route('producto.update', $producto)}}" method="POST">
         @csrf {{--Importante en cada formulario. Es otro input que genera una llave--}}
         @method('PATCH')
         
-        <a href="{{route('productos.index')}}">Lista de Productos</a>
+        <a href="{{route('producto.index')}}">Lista de Productos</a>
         <h1>Editar producto</h1>
         <label for="nombre">Nombre: </label>
         <input type="text" name="nombre" value="{{old('nombre') ?? $producto->nombre}}"> <!-- El old es para si no pasa el filtro despues de editar, vuelva a la respuesta que estaba previamente guardada -->
         <br>
 
         <label for="descripcion">Descripcion: </label>
-        <input type="text" name="descripcion" value="{{old('descripcion') ?? $producto->nombre}}"> 
+        <input type="text" name="descripcion" value="{{old('descripcion') ?? $producto->descripcion}}"> 
         <br>
 
         <label for="precio">Precio: </label>
@@ -38,6 +38,6 @@
 
         <input type="submit" value="Enviar">
     </form>
-    @include('parciales.form-error');
+    @include('parciales.form-error')
 </body>
 </html>

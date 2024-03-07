@@ -7,7 +7,7 @@
     <title>Detalles de Producto</title>
 </head>
 <body>
-    <a href="{{route('productos.index')}}">Lista de Productos</a>
+    <a href="{{route('producto.index')}}">Lista de Productos</a>
     <h1>Detalles de Producto</h1>
     <ul>
         <li><strong>Nombre: </strong> {{$producto->nombre}}</li>

@@ -37,7 +37,7 @@
                     <td>
                         <a href="{{route('producto.show', $producto_ind->id)}}">Ver más</a>    | 
                         <a href="{{route('producto.edit', $producto_ind->id)}}">Editar</a><br>
-                        <form action="{{route('productos.destroy', $producto_ind)}}" method="POST">
+                        <form action="{{route('producto.destroy', $producto_ind)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <input type="submit" value="Eliminar" style="border-radius: 2px; margin: auto;">

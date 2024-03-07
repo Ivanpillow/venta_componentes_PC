@@ -14,7 +14,7 @@ class ProductosController extends Controller
     {
         $producto = Productos::all();
 
-        return view('productos/productoIndex', compact('productos'));
+        return view('productos/productoIndex', compact('producto'));
     }
 
     /**
@@ -41,20 +41,20 @@ class ProductosController extends Controller
         ]);
 
         //Guardar
-        $producto = new Productos();
-        $producto->nombre = $request->nombre;
-        $producto->descripcion = $request->descripcion;
-        $producto->precio = $request->precio;
-        $producto->stock = $request->stock;
-        $producto->categoria = $request->categoria;
-        $producto->status = $request->status;
-        $producto->save();
+        $productos = new Productos();
+        $productos->nombre = $request->nombre;
+        $productos->descripcion = $request->descripcion;
+        $productos->precio = $request->precio;
+        $productos->stock = $request->stock;
+        $productos->categoria = $request->categoria;
+        $productos->status = $request->status;
+        $productos->save();
 
         
         
         //Redireccionar
         //return redirect()->back();
-        return redirect()->route('productos.index');
+        return redirect()->route('producto.index');
     }
 
     /**
@@ -62,7 +62,7 @@ class ProductosController extends Controller
      */
     public function show(Productos $producto)
     {
-        return view('productos.productoShow', compact('productos'));
+        return view('productos.productoShow', compact('producto'));
     }
 
     /**
@@ -70,7 +70,7 @@ class ProductosController extends Controller
      */
     public function edit(Productos $producto)
     {
-        return view('productos.productoEdit', compact('productos'));
+        return view('productos.productoEdit', compact('producto'));
     }
 
     /**
@@ -96,7 +96,7 @@ class ProductosController extends Controller
         $producto->status = $request->status;
         $producto->save();
 
-        return redirect()->route('productos.show', $producto);
+        return redirect()->route('producto.show', $producto);
     }
 
     /**
@@ -105,6 +105,6 @@ class ProductosController extends Controller
     public function destroy(Productos $producto)
     {
         $producto->delete();
-        return redirect()->route('productos.index');
+        return redirect()->route('producto.index');
     }
 }
