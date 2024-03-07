@@ -12,7 +12,8 @@ class VentaController extends Controller
      */
     public function index()
     {
-        //
+        $ventas = Venta::all();
+        return view('ventas/ventaIndex', compact('ventas'));
     }
 
     /**
@@ -20,7 +21,7 @@ class VentaController extends Controller
      */
     public function create()
     {
-        //
+        return view('ventas/ventaCreate');
     }
 
     /**
@@ -28,7 +29,21 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id_usuario' => 'required | max:255',
+            'subtotal' => ['required'],
+            'fecha' => ['required'],
+        ]);
+
+        //Guardar
+        $venta = new Venta();
+        $venta->id_usuario = $request->id_usuario;
+        $venta->subtotal = $request->subtotal;
+        $venta->fecha = $request->fecha;
+        $venta->save();
+
+        //Redireccionar
+        return redirect()->route('venta.index');
     }
 
     /**
@@ -36,7 +51,7 @@ class VentaController extends Controller
      */
     public function show(Venta $venta)
     {
-        //
+        return view('ventas.ventaShow', compact('venta'));
     }
 
     /**
@@ -44,7 +59,7 @@ class VentaController extends Controller
      */
     public function edit(Venta $venta)
     {
-        //
+        return view('ventas.ventaEdit', compact('venta'));
     }
 
     /**
@@ -52,7 +67,18 @@ class VentaController extends Controller
      */
     public function update(Request $request, Venta $venta)
     {
-        //
+        $request->validate([
+            'id_usuario' => 'required | max:255',
+            'subtotal' => ['required'],
+            'fecha' => ['required'],
+        ]);
+
+        $venta->id_usuario = $request->id_usuario;
+        $venta->subtotal = $request->subtotal;
+        $venta->fecha = $request->fecha;
+        $venta->save();
+
+        return redirect()->route('venta.show', $venta);
     }
 
     /**
@@ -60,6 +86,7 @@ class VentaController extends Controller
      */
     public function destroy(Venta $venta)
     {
-        //
+        $venta->delete();
+        return redirect()->route('venta.index');
     }
 }
