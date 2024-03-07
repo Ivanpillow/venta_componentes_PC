@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\SitioController;
+use App\Models\Productos;
+use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +23,18 @@ Route::get('/', function () {
 });
 
 
-Route::get('/test', function () {
-    return 'Esta es nuestra nueva ruta';
-});
+Route::get('/info/{tipo?}', [SitioController::class, 'info']);
+
+Route::resource('producto', ProductosController::class);
+
+
+
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified',
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+// });
