@@ -1,38 +1,37 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Nueva Venta</title>
 </head>
 <body>
-    <a href="/info">Informacion</a>
-    <hr>
-    <h1>Venta</h1>
-    <form action="/venta" method="POST">
-        <!-- siempre poner csrf para formularios -->
-        @csrf
-        <label for="id_usuario">ID del usuario</label><br>
-        <input type="text" name="id_usuario" value="{{ old('id_usuario') }}">
+    <form action="{{route('ventas.store')}}" method="POST">
+        @csrf 
+        {{--Importante el csrf en cada formulario. Es otro input que genera una llave--}}
+        <a href="{{route('ventas.index')}}">Lista de Ventas</a>
+        <h1>Nueva venta</h1>
+        <label for="id_usuario">ID usuario: </label><br>
+        <input type="text" name="id_usuario" value="{{old('id_usuario')}}">
         @error('id_usuario')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <br><br>
 
-        <label for="subtotal">Subtotal</label> <br>
-        <input type="text" name="subtotal" value="{{ old('subtotal') }}">
+        <label for="subtotal">Subtotal: </label><br>
+        <input type="number" name="subtotal" value="{{old('subtotal')}}">
         @error('subtotal')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <br><br>
 
-        <label for="fecha">Fecha</label> <br>
-        <input type="text" name="fecha" value="{{ old('fecha') }}">
+        <label for="fecha">Fecha: </label><br>
+        <input type="text" name="fecha" value="{{old('fecha')}}">
         @error('fecha')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <br><br>
-        
+
         <input type="submit" value="Enviar">
 
         {{-- @if ($errors->any())
@@ -44,8 +43,6 @@
                 </ul>
             </div>
         @endif --}}
-        
-
     </form>
 </body>
 </html>

@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Venta;
+use App\Models\Ventas;
 use Illuminate\Http\Request;
 
-class VentaController extends Controller
+class VentasController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $ventas = Venta::all();
-        return view('ventas/ventaIndex', compact('ventas'));
+        $venta = Ventas::all();
+
+        return view('ventas/ventaIndex', compact('venta'));
     }
 
     /**
@@ -29,27 +30,29 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
+        //Validar
         $request->validate([
-            'id_usuario' => 'required | max:255',
-            'subtotal' => ['required'],
-            'fecha' => ['required'],
+            'id_usuario' => 'required',
+            'subtotal' => 'required',
+            'fecha' => 'required|max:255',
         ]);
 
         //Guardar
-        $venta = new Venta();
+        $venta = new ventas();
         $venta->id_usuario = $request->id_usuario;
         $venta->subtotal = $request->subtotal;
         $venta->fecha = $request->fecha;
         $venta->save();
 
         //Redireccionar
-        return redirect()->route('venta.index');
+        //return redirect()->back();
+        return redirect()->route('ventas.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Venta $venta)
+    public function show(Ventas $venta)
     {
         return view('ventas.ventaShow', compact('venta'));
     }
@@ -57,7 +60,7 @@ class VentaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Venta $venta)
+    public function edit(Ventas $venta)
     {
         return view('ventas.ventaEdit', compact('venta'));
     }
@@ -65,28 +68,29 @@ class VentaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Venta $venta)
+    public function update(Request $request, Ventas $venta)
     {
         $request->validate([
-            'id_usuario' => 'required | max:255',
-            'subtotal' => ['required'],
-            'fecha' => ['required'],
+            'id_usuario' => 'required',
+            'subtotal' => 'required',
+            'fecha' => 'required|max:255',
         ]);
 
+        //Guardar
         $venta->id_usuario = $request->id_usuario;
         $venta->subtotal = $request->subtotal;
         $venta->fecha = $request->fecha;
         $venta->save();
 
-        return redirect()->route('venta.show', $venta);
+        return redirect()->route('ventas.show', $venta);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Venta $venta)
+    public function destroy(Ventas $venta)
     {
         $venta->delete();
-        return redirect()->route('venta.index');
+        return redirect()->route('ventas.index');
     }
 }

@@ -1,49 +1,46 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Listado de ventas</title>
+    <title>Venta</title>
 </head>
 <body>
-    <a href="/venta/create"> Nueva venta </a>
-    
-    <h1>Lista de ventas </h1>
-    <table border=1>
+    <a href="/ventas/create">Nuevo venta</a>
+    <h1>Ventas</h1>
+    <table border="2">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>ID_usuario </th>
-                <th>Subtotal </th>
-                <th>Fecha </th>
-                <th>Creado / Enviado </th>
+                <th>ID usuario</th>
+                <th>Subtotal</th>
+                <th>Fecha</th>
+                <th>Fecha de creación</th>
+                <th>Opciones</th>
             </tr>
         </thead>
-        <body>
-            @foreach ($ventas as $venta)
-            <tr>
-                <td>{{ $venta->id }}</td>
-                <td>{{ $venta->id_usuario }}</td>
-                <td>{{ $venta->subtotal }}</td>
-                <td>{{ $venta->fecha }}</td>
-                <td>{{ $venta->created_at }}</td>
-                <td>
-                    <a href="{{ route('venta.show', $venta->id) }}"> Detalle </a>
-                    <br>
-                    <a href="{{ route('venta.edit', $venta->id) }}"> Editar </a>
-                    <br>
-                    <form action="{{ route('venta.destroy', $venta) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Eliminar</button>
-                    </form>
-
-                </td>
-            </tr>
+        <tbody>
+            @foreach($venta as $venta_ind)
+                <tr>
+                    <td>{{$venta_ind->id}}</td>
+                    <td>{{$venta_ind->id_usuario}}</td>
+                    <td>{{$venta_ind->subtotal}}</td>
+                    <td>{{$venta_ind->fecha}}</td>
+                    <td>{{$venta_ind->created_at}}</td>
+                    <td>
+                        <a href="{{route('ventas.show', $venta_ind->id)}}">Ver más</a>    | 
+                        <a href="{{route('ventas.edit', $venta_ind->id)}}">Editar</a><br>
+                        <form action="{{route('ventas.destroy', $venta_ind)}}" method="POST"> 
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="Eliminar" style="border-radius: 2px; margin: auto;">
+                        </form>
+                    </td>
+                    
+                </tr>
             @endforeach
-        </body>
+        </tbody>
     </table>
-    
 </body>
 </html>

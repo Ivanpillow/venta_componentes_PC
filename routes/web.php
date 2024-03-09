@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\VentaController;
-use App\Http\Controllers\SitioController;
-use App\Models\Venta;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VentasController;
+use App\Http\Controllers\SitioController;
+use App\Models\Ventas;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,18 +23,5 @@ Route::get('/', function () {
 
 Route::get('/info/{tipo?}', [SitioController::class,'info']);
 
-Route::resource('venta', VentaController::class);
+Route::resource('ventas', VentasController::class);
 
-Route::get('/test', function () {
-    return view('ventas/ventaCreate');
-  });
-
-  Route::get('/index', function () {
-    return view('ventas/ventaIndex');
-  });
-
-Route::get('/venta/create', [VentaController::class,'create']);
-
-Route::get('/venta/{venta}', [VentaController::class,'show'])->name('venta.show');
-
-Route::delete('/venta/{venta}', [VentaController::class, 'destroy'])->name('venta.destroy');

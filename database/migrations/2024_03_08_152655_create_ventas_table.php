@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('id_usuario');
             $table->float('subtotal');
-            $table->string('fecha');    
+            $table->string('fecha');
             $table->timestamps();
         });
     }
