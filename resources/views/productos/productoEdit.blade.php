@@ -14,6 +14,10 @@
         <h1>Editar producto</h1>
         <label for="nombre">Nombre: </label>
         <input type="text" name="nombre" value="{{old('nombre') ?? $producto->nombre}}"> <!-- El old es para si no pasa el filtro despues de editar, vuelva a la respuesta que estaba previamente guardada -->
+        
+        @error('nombre')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         <br>
 
         <label for="descripcion">Descripcion: </label>
@@ -39,5 +43,7 @@
         <input type="submit" value="Enviar">
     </form>
     @include('parciales.form-error')
+
+    
 </body>
 </html>
