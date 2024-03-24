@@ -25,3 +25,17 @@ Route::get('/info/{tipo?}', [SitioController::class,'info']);
 
 Route::resource('ventas', VentasController::class);
 
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+
+Route::get('/admin/usuario/demo', function () {
+    return view('demo'); 
+ });

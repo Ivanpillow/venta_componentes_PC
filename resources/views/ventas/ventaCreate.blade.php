@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nueva Venta</title>
-</head>
-<body>
-    <form action="{{route('ventas.store')}}" method="POST">
+<x-mi-layout titulo="Crear venta">
+
+    <form class="btn btn-primary" action="{{route('ventas.store')}}" method="POST">
         @csrf 
         {{--Importante el csrf en cada formulario. Es otro input que genera una llave--}}
         <a href="{{route('ventas.index')}}">Lista de Ventas</a>
@@ -44,5 +38,4 @@
             </div>
         @endif --}}
     </form>
-</body>
-</html>
+</x-mi-layout>
